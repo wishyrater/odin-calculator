@@ -33,3 +33,17 @@ let a;
 let op;
 let b;
 
+const buttons = document.querySelectorAll("button");
+const display = document.querySelector(".display");
+
+buttons.forEach((button) => button.addEventListener("click", function(e) {
+    const buttonPressed = e.target;
+    let text = document.createElement("p");
+    text.textContent = buttonPressed.value;
+
+    display.appendChild(text);
+
+
+}));
+
+console.log(buttons);
