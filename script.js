@@ -30,6 +30,6 @@ function operator(operator, a, b) {
 }
 
 let a;
-let operator;
+let op;
 let b;
 
