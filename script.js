@@ -25,7 +25,7 @@ function operator(operator, a, b) {
         case '/':
             return divide(a, b);
         default:
-            return 'Invalid';
+            return new Error("Invalid");
     }
 }
 
