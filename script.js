@@ -39,8 +39,12 @@ const display = document.querySelector(".display");
 clearButton.addEventListener("click", () => {
     a = 0;
     b = 0;
-    display.textContent = "";
+    display.textContent = "0";
 })
 
-const numberButtons = document.querySelectorAll("button.number")
+const numberButtons = document.querySelectorAll("button.number");
 
+numberButtons.forEach((button) => button.addEventListener("click", (e) => {
+    a += e.target.value;
+    display.textContent = +a;
+}))
