@@ -32,6 +32,8 @@ function calculatorFunction(operator, a, b) {
 let a = 0;
 let b = 0;
 let operator;
+let result;
+let clearNeeded = false;
 
 const clearButton = document.querySelector("#ac");
 const display = document.querySelector(".display");
@@ -44,13 +46,16 @@ clearButton.addEventListener("click", () => {
     a = 0;
     b = 0;
     operator = undefined;
+    clearNeeded = false;
     display.textContent = "0";
     operatorButtons.forEach((button) => button.classList.remove("selected"));
 })
 
 // store values when user clicks number buttons
 numberButtons.forEach((button) => button.addEventListener("click", (e) => {
-    if (operator) {
+    if (clearNeeded) {
+
+    } else if (operator) {
         b += e.target.value;
         display.textContent = +b;
     } else {
@@ -69,6 +74,9 @@ operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
 equalsButton.addEventListener("click", () => {
     let result = calculatorFunction(operator, +a, +b);
     display.textContent = parseFloat(result.toFixed(2));
+
+    // cleanup to prevent further operations until clear
     operatorButtons.forEach((button) => button.classList.remove("selected"));
+    clearNeeded = true;
 })
 
