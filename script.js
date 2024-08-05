@@ -66,6 +66,14 @@ numberButtons.forEach((button) => button.addEventListener("click", (e) => {
 
 // store operator when user clicks operator button
 operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
+    if (clearNeeded) {
+
+    } else if (operator != undefined) {
+        a = calculatorFunction(operator, +a, +b);
+        display.textContent = parseFloat(a.toFixed(2));
+        b = 0;
+        operatorButtons.forEach((button) => button.classList.remove("selected"));
+    }
     operator = e.target.value; 
     e.target.classList.add("selected");
 }))
@@ -80,12 +88,11 @@ equalsButton.addEventListener("click", () => {
         operatorButtons.forEach((button) => button.classList.remove("selected"));
         clearNeeded = true;
     } else {
-        let result = calculatorFunction(operator, +a, +b);
+        result = calculatorFunction(operator, +a, +b);
         display.textContent = parseFloat(result.toFixed(2));
         // cleanup to prevent further operations until clear
         operatorButtons.forEach((button) => button.classList.remove("selected"));
         clearNeeded = true;
     }
-    
 })
 
