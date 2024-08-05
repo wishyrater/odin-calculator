@@ -72,11 +72,20 @@ operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
 
 // display the result when the user clicks equals button
 equalsButton.addEventListener("click", () => {
-    let result = calculatorFunction(operator, +a, +b);
-    display.textContent = parseFloat(result.toFixed(2));
+    if (operator === undefined) {
 
-    // cleanup to prevent further operations until clear
-    operatorButtons.forEach((button) => button.classList.remove("selected"));
-    clearNeeded = true;
+    } else if (operator === "/" && +b === 0) {
+        display.textContent = "get outta here";
+        // cleanup to prevent further operations until clear
+        operatorButtons.forEach((button) => button.classList.remove("selected"));
+        clearNeeded = true;
+    } else {
+        let result = calculatorFunction(operator, +a, +b);
+        display.textContent = parseFloat(result.toFixed(2));
+        // cleanup to prevent further operations until clear
+        operatorButtons.forEach((button) => button.classList.remove("selected"));
+        clearNeeded = true;
+    }
+    
 })
 
