@@ -14,7 +14,7 @@ function divide(a, b) {
     return (a / b);
 }
 
-function operator(operator, a, b) {
+function calculatorFunction(operator, a, b) {
     switch (operator) {
         case '+':
             return add(a, b);
@@ -30,20 +30,17 @@ function operator(operator, a, b) {
 }
 
 let a;
-let op;
 let b;
+let operator;
 
-const buttons = document.querySelectorAll("button");
+const clearButton = document.querySelector("#ac");
 const display = document.querySelector(".display");
 
-buttons.forEach((button) => button.addEventListener("click", function(e) {
-    const buttonPressed = e.target;
-    let text = document.createElement("p");
-    text.textContent = buttonPressed.value;
+clearButton.addEventListener("click", () => {
+    a = 0;
+    b = 0;
+    display.textContent = "";
+})
 
-    display.appendChild(text);
+const numberButtons = document.querySelectorAll("button.number")
 
-
-}));
-
-console.log(buttons);
