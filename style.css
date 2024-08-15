@@ -1,4 +1,6 @@
 body {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,60 +8,65 @@ body {
 }
 
 button {
+    width: 80px;
     height: 40px;
-    width: 60px;
+    font-size: 16px;
 }
 
 .calculator-container {
-    border: 2px solid black;
+    background-color: aqua;
+    top: 600px;
+    width: 400px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    width: 350px;
-    height: 400px;
-
     margin-top: 100px;
 }
 
 .display {
-    padding: 10px; 
-    font-size: 36px;
+    width: 100%;
+    text-align: right;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    font-size: 48px;
 }
 
-.top {
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.top,
+.middle,
+.bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-#ac {
-    display: flex;
-
+.top > #ac-container {
     flex: 1;
 }
 
-#ac > button {
-    flex: 1;
-
+.top > #ac-container > #ac   {
     width: 100%;
 }
 
 .middle {
-    display: flex;
     flex-wrap: wrap;
-
-    justify-content: space-between;
 }
 
 .middle > .button {
     flex: 1 0 21%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border: 2px solid black;
 }
 
 .middle > .button > .number {
@@ -67,27 +74,24 @@ button {
     width: 100%;
 }
 
-
-.middle > .button > .operator {
-    margin-left: auto;
+.middle > .op-container {
+    display: flex;
+    justify-content: right;
+    flex: 0;
 }
 
-
-
-.bottom {
-    display: flex;
-    justify-content: space-between;
-}
-
-#zero-container {
-    display: flex;
+.bottom > #zero-container {
     flex: 1;
 }
 
-#zero-container > button {
-    flex: 1;
+.bottom > #point-container {
+    flex-basis: calc(((0.79 / 3) * 100%) + 1px);
 }
 
-.button {
-    margin: 5px;
+.bottom > #point-container > button {
+    width: 100%;
+}
+
+.bottom > #zero-container > button {
+    width: 100%;
 }
