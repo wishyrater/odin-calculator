@@ -24,6 +24,7 @@ button.operator {
 
 button#ac {
     background-color: #6EE698;
+    border-top-left-radius: 8px;
 }
 
 .calculator-container {
@@ -36,7 +37,7 @@ button#ac {
     align-items: center;
 
     margin-top: 100px;
-    padding: 8px;
+    padding: 2px;
 
     border: 5px solid #193C40;
     background-color: #193C40;
@@ -81,6 +82,10 @@ button#ac {
     width: 100%;
 }
 
+#divider {
+    border-top-right-radius: 8px;
+}
+
 .middle {
     flex-wrap: wrap;
 }
@@ -114,4 +119,9 @@ button#ac {
 
 .bottom > #zero-container > button {
     width: 100%;
+    border-bottom-left-radius: 8px;
+}
+
+#equals {
+    border-bottom-right-radius: 8px;
 }
