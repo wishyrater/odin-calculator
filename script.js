@@ -66,6 +66,7 @@ numberButtons.forEach((button) => button.addEventListener("click", (e) => {
         display.textContent = +b;
 
         e.target.classList.add("selected");
+        display.scrollLeft = display.scrollWidth;
 
         if (value === ".") {
             pointPressed = true;
@@ -81,6 +82,7 @@ numberButtons.forEach((button) => button.addEventListener("click", (e) => {
         }
 
         e.target.classList.add("selected");
+        display.scrollLeft = display.scrollWidth;
     }
 }));
 
