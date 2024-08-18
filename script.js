@@ -34,12 +34,14 @@ let b = 0;
 let operator;
 let result;
 let clearNeeded = false;
+let pointPressed = false;
 
 const clearButton = document.querySelector("#ac");
 const display = document.querySelector(".display");
 const operatorButtons = document.querySelectorAll("button.operator");
 const numberButtons = document.querySelectorAll("button.number");
 const equalsButton = document.querySelector("button.equals");
+const dotButton = document.querySelector("#point");
 
 // remove all existing text and variable values when clearing the calculator
 clearButton.addEventListener("click", () => {
@@ -49,20 +51,45 @@ clearButton.addEventListener("click", () => {
     clearNeeded = false;
     display.textContent = "0";
     operatorButtons.forEach((button) => button.classList.remove("selected"));
+    pointPressed= false;
 })
 
 // store values when user clicks number buttons
 numberButtons.forEach((button) => button.addEventListener("click", (e) => {
-    if (clearNeeded) {
+    if (clearNeeded || (pointPressed && e.target.value === ".")) {
 
     } else if (operator) {
         b += e.target.value;
         display.textContent = +b;
+
+        if (value === ".") {
+            pointPressed = true;
+        }
     } else {
         a += e.target.value;
         display.textContent = +a;
+
+        if (e.target.value === ".") {
+            pointPressed = true;
+        }
     }
-}))
+}));
+
+window.addEventListener("keypress", (event) => {
+    const key = event.key;
+    let button;
+
+    if (key === 'Enter') {
+        button = document.querySelector(`button[value="="]`);
+    } else {
+        button = document.querySelector(`button[value="${key}"]`);
+    }
+
+    if (button) {
+        button.click();
+    }
+
+})
 
 // store operator when user clicks operator button
 operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
@@ -73,9 +100,11 @@ operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
         display.textContent = parseFloat(a.toFixed(2));
         b = 0;
         operatorButtons.forEach((button) => button.classList.remove("selected"));
+        pointPressed = false;
     }
     operator = e.target.value; 
     e.target.classList.add("selected");
+    pointPressed = false;
 }))
 
 // display the result when the user clicks equals button
@@ -95,4 +124,3 @@ equalsButton.addEventListener("click", () => {
         clearNeeded = true;
     }
 })
-
