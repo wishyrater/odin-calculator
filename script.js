@@ -51,7 +51,8 @@ clearButton.addEventListener("click", () => {
     clearNeeded = false;
     display.textContent = "0";
     operatorButtons.forEach((button) => button.classList.remove("selected"));
-    pointPressed= false;
+    numberButtons.forEach((button) => button.classList.remove("selected"));
+    pointPressed = false;
 })
 
 // store values when user clicks number buttons
@@ -59,19 +60,27 @@ numberButtons.forEach((button) => button.addEventListener("click", (e) => {
     if (clearNeeded || (pointPressed && e.target.value === ".")) {
 
     } else if (operator) {
+        numberButtons.forEach((button) => button.classList.remove("selected"));
+
         b += e.target.value;
         display.textContent = +b;
+
+        e.target.classList.add("selected");
 
         if (value === ".") {
             pointPressed = true;
         }
     } else {
+        numberButtons.forEach((button) => button.classList.remove("selected"));
+
         a += e.target.value;
         display.textContent = +a;
 
         if (e.target.value === ".") {
             pointPressed = true;
         }
+
+        e.target.classList.add("selected");
     }
 }));
 
@@ -105,6 +114,7 @@ operatorButtons.forEach((button) => button.addEventListener("click", (e) => {
     operator = e.target.value; 
     e.target.classList.add("selected");
     pointPressed = false;
+    numberButtons.forEach((button) => button.classList.remove("selected"));
 }))
 
 // display the result when the user clicks equals button
@@ -115,12 +125,14 @@ equalsButton.addEventListener("click", () => {
         display.textContent = "get outta here";
         // cleanup to prevent further operations until clear
         operatorButtons.forEach((button) => button.classList.remove("selected"));
+        numberButtons.forEach((button) => button.classList.remove("selected"));
         clearNeeded = true;
     } else {
         result = calculatorFunction(operator, +a, +b);
         display.textContent = parseFloat(result.toFixed(2));
         // cleanup to prevent further operations until clear
         operatorButtons.forEach((button) => button.classList.remove("selected"));
+        numberButtons.forEach((button) => button.classList.remove("selected"));
         clearNeeded = true;
     }
 })

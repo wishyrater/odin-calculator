@@ -22,6 +22,10 @@ button.operator {
     background-color: #6EE2E6;
 }
 
+button.selected {
+    background-color: #34919b;
+}
+
 button#ac {
     background-color: #6EE698;
     border-top-left-radius: 8px;
